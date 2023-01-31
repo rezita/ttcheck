@@ -36,6 +36,7 @@ function init() {
     setVisibility(testDiv, false);
     setVisibility(resultDiv, false);
     setVisibility(pauseDiv, false);
+    setVisibility(nextBtn, false);
 }
 
 function initTest() {
