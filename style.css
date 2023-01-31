@@ -1,0 +1,51 @@
+body {
+    background-color: white;
+    font-size: 25pt;
+}
+
+#content{
+    width: 600px;
+}
+
+#timer{
+    font-size: 15pt;
+    text-align: right;
+}
+
+#pause{
+    font-size: 15pt;
+    text-align: center;
+}
+
+input {
+    width: 5em;
+    appearance: none;
+}
+
+button {
+    font-size: 25pt;
+}
+
+input:focus {
+    font-size: 25pt;
+    outline-color: orange;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number]{
+    -moz-appearance: textfield;
+}
+
+#test{
+    margin-left: 25pt;
+}
+/*
+div {
+    border: 1pt solid;
+}
+*/
