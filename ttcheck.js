@@ -145,8 +145,9 @@ function setAndStartTimer(time) {
         timerDiv.innerHTML = `Time Left: ${time}`;
         time--;
         if (time < 0) {
-            setAndStartPause(delayPause);
-            clearInterval(timerID);
+            saveResultAndStartPause()
+            //setAndStartPause(delayPause);
+            //clearInterval(timerID);
         }
     }
 }
@@ -156,36 +157,51 @@ function setAndStartPause(time) {
     function pauseTimer() {
         time--;
         setVisibility(testDiv, false);
-        let nextQuestion = currentIndex + 2;
+        let nextQuestion = currentIndex + 1;
         pauseDiv.innerHTML = `Question ${nextQuestion} ...`;
         setVisibility(pauseDiv, true);
 
         //console.log(`Pause`)
         if (time < 0) {
             clearInterval(timerPauseID);
-            saveAndMoveNextQuestion();
+            //saveAndMoveNextQuestion();
+            askQuestion();
         }
     }
 }
 
 function saveAndMoveNextQuestion() {
-    saveCurrentResult(currentIndex);
-    currentIndex++;
-    askQuestion();
+    //saveCurrentResult(currentIndex);
+    //currentIndex++;
+    //askQuestion();
 }
 
 calcRes.addEventListener("keypress", function (e) {
     if (e.key == "Enter") {
         if (isValidAnswer()) {
-            clearInterval(timerID);
-            setAndStartPause(delayPause);
+            saveResultAndStartPause()
+            //setAndStartPause(delayPause);
+            //clearInterval(timerID);
             //saveAndMoveNextQuestion();
         }
     }
 })
 
-function saveCurrentResult(index) {
-    questions[index][2] = (isValidAnswer()) ? calcRes.value : 0;  
+function saveResultAndStartPause(){
+    saveCurrentResult();
+    currentIndex++;
+//    console.log(timerID);
+    clearInterval(timerID);
+    if (currentIndex < questions.length){
+        setAndStartPause(delayPause);
+    } else {
+        askQuestion();
+    }
+    
+}
+
+function saveCurrentResult() {
+    questions[currentIndex][2] = (isValidAnswer()) ? calcRes.value : 0;  
 }
 
 function isValidAnswer() {
